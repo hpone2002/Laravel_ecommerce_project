@@ -1,0 +1,25 @@
+.product_detail {
+    width: 100%;
+}
+
+.box {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px 20px !important;
+
+    min-width: 300px;
+}
+
+.img_box {
+    width: 25%;
+    min-width: 100px;
+    border-radius: 10px;
+}
+
+.img_box img {
+    width: 100%;
+}
+.box table td {
+    padding: 5px 15px;
+}

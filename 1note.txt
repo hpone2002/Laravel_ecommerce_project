@@ -1,0 +1,51 @@
+Uncomment zip in xampp/php/php.ini
+
+composer create-project laravel/laravel e_commerce
+
+connnect with database in .env
+
+go to migrate file of user table and add columns(user_type, phone and email)
+and then go to user model to add (phone and email)
+
+php artisan migrate
+
+
+
+
+USER AUTHENTICATION
+breeze installing for multiple authentication
+composer require laravel/breeze --dev
+php artisan breeze:install
+
+npm install (download frontend package)
+npm run dev (run frontend package)
+
+Add input elements for (phone and address) in resources/views/auth/register.php
+
+Added code in RegisterUserController.php, to store requested data from register
+
+php artisan make:controller HomeController
+
+Add a route for admin/dashboard in wed.php
+
+Go to AuthenticatedSessionController.php, if user is admin , go to admin/dashboard
+
+
+php artisan make:middleware Admin
+add some code in http/middleware/admin.php
+
+write middleware alias in bootstrap/app.php to use in route
+
+
+Integrating UI with laravel
+copy all frontend files(html, css, js) into public folder
+build a folder for html file under views and change css, js and all href links with asset()
+
+php artisan make:controller AdminController
+
+
+php artisan make:controller Category -m 
+-> structured table in migration file
+-> make $fillable in Category model
+
+php artisan migrate

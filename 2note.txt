@@ -1,0 +1,114 @@
+Toastr Notification0
+composer require php-flasher/flasher-toastr-laravel
+php artisan flasher:install
+
+toastr()->closeButton()->timeout(5000)->addSuccess('Category added successfully.')
+toastr()->error('There is something wrong!')
+
+onclick="return confirm('Are you sure you want to delete this category?')"
+
+return view('admin.category', compact('categories'));
+
+
+image upload in add_product.blade.php
+
+
+pagination sytle in bootstrap
+add use Illuminate\Pagination\Paginator; in AppServiceProvider
+Paginator::useBootstrap();
+
+Short description
+<td>
+    {{ Str::limit($product->description, 10, '...') }}
+    {{ Str::words($product->description, 10, '...') }}
+</td>
+
+upload photos that come with form request
+ $image = $request->image;
+    if($image) {
+        $imageName = time().'.'.$image->getClientOriginalExtension();
+        $image->move('product_images', $imageName);
+                        // path             name
+        $product->image = $imageName;
+    }
+
+Delete photos under public folder when delete data in database
+$data = Product::find($id);
+$image_path = public_path('product_images/'.$data->image);
+if(file_exists($image_path)) {
+    unlink($image_path);
+};
+
+
+Searchbar feature
+public function search_products(Request $request) {
+        $search = $request->search;
+
+        $products = Product::where('title', 'Like', '%' .$search. '%')->
+                    orWhere('category', 'Like', '%' .$search. '%')->paginate(3);
+
+        return view('admin.view_product', compact('products'));
+    }
+
+
+makgin shoping cart 
+php artisan make:model Cart -m 
+
+
+Changing blade file into PDF
+composer require barryvdh/laravel-dompdf (download package)
+php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider" (configuration)
+
+improt this (use Barryvdh\DomPDF\Facade\Pdf;) in controller
+
+
+Forgot password and password reset with gmail
+Change mail setting in .env file 
+-first your real email must be two step verification
+search "app passwords" in email, type random name and create, copy password and use it in env 
+
+Email verification after registration
+read documentation
+
+
+
+
+
+STRIPE PAYMENT INTEGRATION
+https://techsolutionstuff.com/post/integrate-stripe-payment-gateway-in-laravel-11
+
+composer require stripe/stripe-php
+
+add some lines in .env
+go to stripe.com / get striped publishable key and striped secret key in test mode
+
+php artisan make:controller StripePaymentController
+add functions in stripePaymentController
+create stripe.blade.php
+
+Add routes in web.php
+
+Card Name: Test
+Card Number: 4242424242424242
+Month: 07
+Year: 2027
+CVV: 123
+
+
+Adding columns in existing table
+php artisan make:migration add_payment_status_to_orders_table --table=orders
+php artisan migrate
+
+
+
+Generating unique slug(can use as an id behind url)
+composer require cviebrock/eloquent-sluggable
+
+php artisan make:migration add_slug_column_to_products_table --table=products
+
+import use Cviebrock\EloquentSluggable\Sluggable; in ProductModel
+
+
+
+
+
